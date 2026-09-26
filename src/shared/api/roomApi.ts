@@ -12,3 +12,11 @@ export async function getRooms(filters: Filters): Promise<Room[] | undefined> {
   }
   return response.json();
 }
+
+export async function getRoomById(roomId: string): Promise<Room | undefined> {
+  const response = await fetch(`/api/rooms/${roomId}`);
+  if (!response.ok) {
+    throw new Error('Ошибка получения комнаты');
+  }
+  return response.json();
+}

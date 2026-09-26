@@ -46,7 +46,7 @@ const LoginForm = () => {
           type="email"
           {...register('email')}
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
       </label>
       <label htmlFor="password">
         <input
@@ -54,7 +54,9 @@ const LoginForm = () => {
           type="password"
           {...register('password')}
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && (
+          <p className="text-red-500">{errors.password.message}</p>
+        )}
       </label>
       <button
         type="submit"

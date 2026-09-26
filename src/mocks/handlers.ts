@@ -35,6 +35,19 @@ export const handlers = [
     return HttpResponse.json(result);
   }),
 
+  // Получить комнату
+  http.get('/api/rooms/:roomId', ({ params }) => {
+    const room = mockRooms.find((r) => r.id === params.roomId);
+    if (!room) {
+      return HttpResponse.json(
+        { error: 'Комната не найдена' },
+        { status: 404 }
+      );
+    }
+
+    return HttpResponse.json(room);
+  }),
+
   // Получить бронирования
   http.get('/api/bookings', ({ request }) => {
     const roomId = new URL(request.url).searchParams.get('roomId');
@@ -47,17 +60,16 @@ export const handlers = [
 
   // Создать бронирование
   http.post('/api/bookings', async ({ request }) => {
-    // ✅ Типизируем body явно
-    const body = (await request.json()) as Omit<
-      Booking,
-      'id' | 'status' | 'roomId'
-    >;
+    const body = (await request.json()) as Omit<Booking, 'id' | 'status'>;
 
-    return HttpResponse.json({
+    const newBooking: Booking = {
       id: Date.now().toString(),
-      roomId: Date.now().toString(),
       ...body,
       status: 'active' as const
-    });
+    };
+
+    mockBookings.push(newBooking);
+
+    return HttpResponse.json(newBooking);
   })
 ];

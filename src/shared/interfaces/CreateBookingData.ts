@@ -2,6 +2,6 @@ export interface CreateBookingData {
   roomId: string;
   startTime: string;
   endTime: string;
-  title: string;
+  theme: string;
   userName: string;
 }

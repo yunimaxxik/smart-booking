@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import type { FilterState } from '../interfaces/FilterState';
+import type { FilterState } from '../api/interfaces/FilterState';
 
 export const useFilterStore = create<FilterState>((set) => ({
   hasProjector: false,
