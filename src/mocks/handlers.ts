@@ -71,5 +71,20 @@ export const handlers = [
     mockBookings.push(newBooking);
 
     return HttpResponse.json(newBooking);
+  }),
+
+  http.patch('/api/bookings/:bookingId', async ({ params }) => {
+    const booking = mockBookings.find((r) => r.id === params.bookingId);
+
+    if (!booking) {
+      return HttpResponse.json(
+        { error: 'Бронирование не найдено' },
+        { status: 404 }
+      );
+    }
+
+    booking.status = 'cancelled';
+
+    return HttpResponse.json(booking);
   })
 ];
