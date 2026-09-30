@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw';
-import { mockRooms, mockBookings } from './data';
+import { mockRooms } from './data';
 import type { Booking } from '../shared/interfaces/Booking';
+import { getStoredBookings, saveBookings } from './storage';
 
 export const handlers = [
   // Авторизация
@@ -51,7 +52,7 @@ export const handlers = [
   // Получить бронирования
   http.get('/api/bookings', ({ request }) => {
     const roomId = new URL(request.url).searchParams.get('roomId');
-    let result = [...mockBookings];
+    let result = getStoredBookings();
     if (roomId) {
       result = result.filter((b) => b.roomId === roomId);
     }
@@ -61,6 +62,7 @@ export const handlers = [
   // Создать бронирование
   http.post('/api/bookings', async ({ request }) => {
     const body = (await request.json()) as Omit<Booking, 'id' | 'status'>;
+    const currentBookings = getStoredBookings();
 
     const newBooking: Booking = {
       id: Date.now().toString(),
@@ -68,13 +70,14 @@ export const handlers = [
       status: 'active' as const
     };
 
-    mockBookings.push(newBooking);
-
+    currentBookings.push(newBooking);
+    saveBookings(currentBookings);
     return HttpResponse.json(newBooking);
   }),
 
   http.patch('/api/bookings/:bookingId', async ({ params }) => {
-    const booking = mockBookings.find((r) => r.id === params.bookingId);
+    const currentBookings = getStoredBookings();
+    const booking = currentBookings.find((r) => r.id === params.bookingId);
 
     if (!booking) {
       return HttpResponse.json(
@@ -84,6 +87,7 @@ export const handlers = [
     }
 
     booking.status = 'cancelled';
+    saveBookings(currentBookings);
 
     return HttpResponse.json(booking);
   })

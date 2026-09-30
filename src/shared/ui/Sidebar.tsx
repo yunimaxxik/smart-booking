@@ -6,8 +6,8 @@ const Sidebar = () => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/dashboard', label: 'Dashboard', icon: '🏠' },
-    { path: '/my-bookings', label: 'My Bookings', icon: '📅' }
+    { path: '/dashboard', label: 'Доска комнат', icon: '🏠' },
+    { path: '/my-bookings', label: 'Мои бронирования', icon: '📅' }
   ];
   return (
     <aside className="w-64 bg-amber-950 shadow-md flex flex-col">
@@ -43,7 +43,7 @@ const Sidebar = () => {
             U
           </div>
           <div>
-            <p className="font-medium text-amber-100">User</p>
+            <p className="font-medium text-amber-100">Пользователь</p>
             <p className="text-sm text-amber-300">user@test.com</p>
           </div>
           <button
