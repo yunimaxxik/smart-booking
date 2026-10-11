@@ -49,15 +49,4 @@ export const mockRooms: Room[] = [
   }
 ];
 
-export const mockBookings: Booking[] = [
-  {
-    id: '1',
-    roomId: '1',
-    userId: 'user1',
-    userName: 'test@test.com',
-    title: 'Планёрка команды',
-    startTime: '2024-01-20T10:00:00',
-    endTime: '2024-01-20T11:00:00',
-    status: 'active'
-  }
-];
+export const mockBookings: Booking[] = [];

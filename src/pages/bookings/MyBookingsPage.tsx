@@ -24,13 +24,13 @@ const MyBookingsPage = () => {
 
   if (isLoading) {
     return (
-      <section className="max-w-3xl mx-auto px-4 py-8">
-        <div className="h-7 w-64 bg-gray-200 rounded animate-pulse mb-6" />
+      <section className="mx-auto max-w-3xl px-4 py-10 sm:px-8">
+        <div className="mb-6 h-7 w-64 animate-pulse rounded-lg bg-[#E4D5C1]" />
         <ul className="flex flex-col gap-4">
           {[1, 2, 3].map((i) => (
             <li
               key={i}
-              className="h-40 bg-gray-100 border border-gray-200 rounded-xl animate-pulse"
+              className="h-40 animate-pulse rounded-2xl border border-[#E4D5C1] bg-[#EFE2CE]"
             />
           ))}
         </ul>
@@ -40,13 +40,13 @@ const MyBookingsPage = () => {
 
   if (error) {
     return (
-      <section className="max-w-3xl mx-auto px-4 py-8">
+      <section className="mx-auto max-w-3xl px-4 py-10 sm:px-8">
         <div
           role="alert"
-          className="flex items-start gap-3 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700"
+          className="flex items-start gap-3 rounded-2xl border border-[#D9A38A] bg-[#FBEFE8] p-4 text-[#8A3B2A]"
         >
           <svg
-            className="w-5 h-5 shrink-0 mt-0.5"
+            className="mt-0.5 h-5 w-5 shrink-0"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -61,7 +61,7 @@ const MyBookingsPage = () => {
           </svg>
           <div className="flex flex-col gap-1">
             <p className="font-medium">Не удалось загрузить бронирования</p>
-            <p className="text-sm text-red-600/80">
+            <p className="text-sm text-[#8A3B2A]/75">
               Попробуйте обновить страницу или повторите попытку позже.
             </p>
           </div>
@@ -73,11 +73,13 @@ const MyBookingsPage = () => {
   const hasBookings = data && data.length > 0;
 
   return (
-    <section>
-      <header className="flex items-end justify-between gap-4 mb-6">
+    <section className="min-h-screen bg-[#F5EFE6] px-4 py-10 sm:px-8 lg:px-16">
+      <header className="mb-6 flex items-end justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <h2 className="text-2xl font-bold text-gray-900">Мои бронирования</h2>
-          <p className="text-sm text-gray-500">
+          <h2 className="text-3xl font-bold tracking-tight text-[#3D2B1F]">
+            Мои бронирования
+          </h2>
+          <p className="text-sm text-[#7A6350]">
             {hasBookings
               ? `Всего: ${data.length}`
               : 'Здесь появятся ваши брони'}
@@ -86,7 +88,7 @@ const MyBookingsPage = () => {
       </header>
 
       {hasBookings ? (
-        <ul className="flex flex-col gap-4">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((booking) => (
             <BookingCard
               key={booking.id}
@@ -96,10 +98,10 @@ const MyBookingsPage = () => {
           ))}
         </ul>
       ) : (
-        <div className="flex flex-col items-center justify-center gap-3 py-16 px-6 bg-gray-50 border border-dashed border-gray-300 rounded-2xl text-center">
-          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-gray-200">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-[#D8C7B0] bg-[#FAF6F0] px-6 py-16 text-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#E4D5C1] bg-[#EFE2CE]">
             <svg
-              className="w-6 h-6 text-gray-400"
+              className="h-6 w-6 text-[#8B5E34]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -114,10 +116,10 @@ const MyBookingsPage = () => {
             </svg>
           </div>
           <div className="flex flex-col gap-1">
-            <p className="font-medium text-gray-900">
+            <p className="font-medium text-[#3D2B1F]">
               У вас пока нет бронирований
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-[#7A6350]">
               Выберите комнату и оформите первую бронь.
             </p>
           </div>

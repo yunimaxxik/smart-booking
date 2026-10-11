@@ -37,32 +37,82 @@ const LoginForm = () => {
     }
   };
 
+  const inputClasses =
+    'w-full rounded-xl border bg-[#FAF6F0] px-4 py-2.5 text-[#3D2B1F] placeholder-[#A89279] transition-colors focus:outline-none focus:ring-2 focus:ring-[#C49A6C]/50';
+
   return (
-    <form onSubmit={handleSubmit(handleAuth)}>
-      {errors.root && <p className="text-red-500">{errors.root.message}</p>}
-      <label htmlFor="email">
+    <form
+      className="flex min-w-full flex-col gap-5 py-5"
+      onSubmit={handleSubmit(handleAuth)}
+      noValidate
+    >
+      {/* Общая ошибка авторизации */}
+      {errors.root && (
+        <div
+          role="alert"
+          className="rounded-xl border border-[#D9A38A] bg-[#FBEFE8] px-4 py-3 text-sm text-[#8A3B2A]"
+        >
+          {errors.root.message}
+        </div>
+      )}
+
+      {/* Email */}
+      <div className="flex flex-col gap-1.5">
+        <label
+          htmlFor="email"
+          className="text-sm font-medium text-[#5A4432]"
+        >
+          Email
+        </label>
         <input
           id="email"
           type="email"
+          autoComplete="email"
+          placeholder="you@example.com"
+          className={`${inputClasses} ${
+            errors.email
+              ? 'border-[#D9A38A] focus:ring-[#D9A38A]/60'
+              : 'border-[#E4D5C1] focus:border-[#C49A6C]'
+          }`}
           {...register('email')}
         />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </label>
-      <label htmlFor="password">
+        {errors.email && (
+          <p className="text-sm text-[#8A3B2A]">{errors.email.message}</p>
+        )}
+      </div>
+
+      {/* Пароль */}
+      <div className="flex flex-col gap-1.5">
+        <label
+          htmlFor="password"
+          className="text-sm font-medium text-[#5A4432]"
+        >
+          Пароль
+        </label>
         <input
           id="password"
           type="password"
+          autoComplete="current-password"
+          placeholder="••••••••"
+          className={`${inputClasses} ${
+            errors.password
+              ? 'border-[#D9A38A] focus:ring-[#D9A38A]/60'
+              : 'border-[#E4D5C1] focus:border-[#C49A6C]'
+          }`}
           {...register('password')}
         />
         {errors.password && (
-          <p className="text-red-500">{errors.password.message}</p>
+          <p className="text-sm text-[#8A3B2A]">{errors.password.message}</p>
         )}
-      </label>
+      </div>
+
+      {/* Кнопка */}
       <button
         type="submit"
         disabled={isSubmitting}
+        className="mt-2 cursor-pointer rounded-xl bg-[#8B5E34] px-6 py-2.5 font-medium text-[#FAF6F0] shadow-sm transition-colors hover:bg-[#6F4A29] active:bg-[#5A3B20] focus:outline-none focus:ring-2 focus:ring-[#C49A6C]/60 disabled:cursor-not-allowed disabled:bg-[#C9B39A] disabled:text-[#FAF6F0]/70"
       >
-        Войти
+        {isSubmitting ? 'Входим…' : 'Войти'}
       </button>
     </form>
   );

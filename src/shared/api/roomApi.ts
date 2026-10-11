@@ -10,7 +10,7 @@ export async function getRooms(filters: Filters): Promise<Room[] | undefined> {
   if (!response.ok) {
     throw new Error('Ошибка получения комнат');
   }
-  return response.json();
+  return await response.json();
 }
 
 export async function getRoomById(roomId: string): Promise<Room | undefined> {
@@ -18,5 +18,5 @@ export async function getRoomById(roomId: string): Promise<Room | undefined> {
   if (!response.ok) {
     throw new Error('Ошибка получения комнаты');
   }
-  return response.json();
+  return await response.json();
 }

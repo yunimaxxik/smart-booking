@@ -49,33 +49,67 @@ const BookingPage = () => {
 
   if (!roomId) {
     return (
-      <div className="p-8 text-center text-red-500">Комната не найдена</div>
+      <div className="flex min-h-screen items-center justify-center bg-[#F5EFE6] p-8 text-center text-[#8A3B2A]">
+        Комната не найдена
+      </div>
     );
   }
 
   if (roomQuery.isLoading || bookingQuery.isLoading) {
-    return <div className="p-8 text-center">Загрузка данных...</div>;
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-[#F5EFE6] text-[#7A6350]">
+        <span className="h-10 w-10 animate-spin rounded-full border-4 border-[#E4D5C1] border-t-[#8B5E34]" />
+        <span>Загрузка данных…</span>
+      </div>
+    );
   }
+
   if (roomQuery.error || bookingQuery.error) {
-    return <div className="p-8 text-red-500">Ошибка загрузки данных</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#F5EFE6] p-8">
+        <div className="rounded-2xl border border-[#D9A38A] bg-[#FBEFE8] px-6 py-4 text-[#8A3B2A]">
+          Ошибка загрузки данных
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">{roomQuery.data?.name}</h1>
-      <TimeSlots
-        bookings={bookingQuery.data || []}
-        onSlotClick={handleSlotClick}
-      />
-      {selectedSlot && (
-        <BookingForm
-          startTime={selectedSlot.startTime}
-          endTime={selectedSlot.endTime}
-          roomId={roomId}
-          onSubmit={handleBookingSubmit}
-          onCancel={handleCancel}
-        />
-      )}
+    <div className="min-h-screen bg-[#F5EFE6] px-4 py-10 sm:px-8 lg:px-16">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-8 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm uppercase tracking-wide text-[#A89279]">
+              Бронирование
+            </p>
+            <h1 className="mt-1 text-4xl font-bold tracking-tight text-[#3D2B1F]">
+              {roomQuery.data?.name}
+            </h1>
+          </div>
+        </div>
+
+        <section className="rounded-2xl border border-[#E4D5C1] bg-[#FAF6F0] p-6 shadow-sm">
+          <h2 className="mb-4 text-lg font-semibold text-[#3D2B1F]">
+            Свободные слоты
+          </h2>
+          <TimeSlots
+            bookings={bookingQuery.data || []}
+            onSlotClick={handleSlotClick}
+          />
+        </section>
+
+        {selectedSlot && (
+          <div className="mt-6">
+            <BookingForm
+              startTime={selectedSlot.startTime}
+              endTime={selectedSlot.endTime}
+              roomId={roomId}
+              onSubmit={handleBookingSubmit}
+              onCancel={handleCancel}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

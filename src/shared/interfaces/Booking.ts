@@ -3,7 +3,7 @@ export interface Booking {
   roomId: string;
   userId: string;
   userName: string;
-  title: string;
+  theme: string;
   startTime: string;
   endTime: string;
   status: 'active' | 'completed' | 'cancelled';

@@ -10,23 +10,25 @@ const BookingCard = ({ booking, onCancel }: BookingCardProps) => {
   const isActive = booking.status === 'active';
 
   return (
-    <li className="list-none flex flex-col gap-2 max-w-md p-5 bg-white border border-gray-200 rounded-xl shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <li className="flex max-w-md list-none flex-col gap-2 rounded-2xl border border-[#E4D5C1] bg-[#FAF6F0] p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
       <span
-        className="text-xs font-medium text-gray-500 uppercase tracking-wide"
+        className="text-xs font-medium uppercase tracking-wide text-[#A89279]"
         aria-label="date booking"
       >
         {format(parseISO(booking.startTime), 'dd MMMM yyyy')}
       </span>
 
-      <h2 className="text-lg font-semibold text-gray-900 mt-1">
+      <h2 className="mt-1 text-lg font-semibold text-[#3D2B1F]">
         {booking.roomId}
       </h2>
-      <h3 className="text-base font-medium text-gray-800">{booking.title}</h3>
-      <h3 className="text-sm text-gray-600">{booking.userName}</h3>
+      <h3 className="text-base font-medium text-[#5A4432]">{booking.theme}</h3>
+      <h3 className="text-sm text-[#7A6350]">{booking.userName}</h3>
 
       <span
-        className={`self-start mt-2 px-2.5 py-1 rounded-full text-xs font-semibold ${
-          isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+        className={`mt-2 self-start rounded-full px-3 py-1 text-xs font-semibold ${
+          isActive
+            ? 'bg-[#E4EFD9] text-[#4F6B3A]'
+            : 'bg-[#F0DCD4] text-[#8A3B2A]'
         }`}
       >
         {isActive ? 'Активно' : 'Отменено'}
@@ -34,8 +36,9 @@ const BookingCard = ({ booking, onCancel }: BookingCardProps) => {
 
       {isActive && (
         <button
+          type="button"
           onClick={() => onCancel(booking.id)}
-          className="self-start mt-3 px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 active:bg-red-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+          className="mt-3 self-start rounded-xl border border-[#D9A38A] bg-[#FBEFE8] px-4 py-2 text-sm font-medium text-[#8A3B2A] transition-colors hover:bg-[#F3DED4] hover:text-[#6F2A1B] active:bg-[#EBD0C4] focus:outline-none focus:ring-2 focus:ring-[#D9A38A]/60"
         >
           Отменить
         </button>

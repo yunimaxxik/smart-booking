@@ -1,20 +1,28 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
+import boardIcon from '../../assets/icons/board.png';
+import calendarIcon from '../../assets/icons/calendar.png';
 
 const Sidebar = () => {
   const logout = useAuthStore((store) => store.logout);
   const location = useLocation();
 
   const navItems = [
-    { path: '/dashboard', label: 'Доска комнат', icon: '🏠' },
-    { path: '/my-bookings', label: 'Мои бронирования', icon: '📅' }
+    { path: '/dashboard', label: 'Доска комнат', icon: boardIcon },
+    { path: '/my-bookings', label: 'Мои бронирования', icon: calendarIcon }
   ];
+
   return (
-    <aside className="w-64 bg-amber-950 shadow-md flex flex-col">
-      <div className="p-6 border-b border-amber-100">
-        <h1 className="text-2xl font-bold text-amber-100">Smart Booking</h1>
+    <aside className="sticky top-0 flex h-screen w-64 shrink-0 flex-col bg-[#3D2B1F] shadow-xl">
+      {/* Логотип */}
+      <div className="border-b border-[#5A4432] p-6">
+        <h1 className="text-2xl font-bold tracking-tight text-[#F5EFE6]">
+          Smart <span className="text-[#C49A6C]">Booking</span>
+        </h1>
       </div>
-      <nav className="flex-1 p-4">
+
+      {/* Навигация — скроллится, если пунктов станет много */}
+      <nav className="flex-1 overflow-y-auto p-4">
         <ul className="space-y-2">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -23,13 +31,18 @@ const Sidebar = () => {
               <li key={item.path}>
                 <Link
                   to={item.path}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                  className={`flex items-center gap-3 rounded-lg px-4 py-3 transition-all duration-200 ${
                     isActive
-                      ? 'text-amber-200 font-semibold'
-                      : 'text-amber-100 hover:text-amber-500'
+                      ? 'bg-[#8B5E34] font-semibold text-[#FAF6F0] shadow-inner'
+                      : 'text-[#D8C7B0] hover:bg-[#4A3626] hover:text-[#F5EFE6]'
                   }`}
                 >
-                  <span>{item.icon}</span>
+                  <img
+                    src={item.icon}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-5 w-5 shrink-0"
+                  />
                   <span>{item.label}</span>
                 </Link>
               </li>
@@ -37,18 +50,26 @@ const Sidebar = () => {
           })}
         </ul>
       </nav>
-      <div className="p-4 border-t border-gray-200">
+
+      {/* Профиль и выход — всегда внизу */}
+      <div className="border-t border-[#5A4432] p-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-amber-200 rounded-full flex items-center justify-center text-white font-bold">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-[#C49A6C] to-[#8B5E34] font-bold text-[#FAF6F0]">
             U
           </div>
-          <div>
-            <p className="font-medium text-amber-100">Пользователь</p>
-            <p className="text-sm text-amber-300">user@test.com</p>
+
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-medium text-[#F5EFE6]">
+              Пользователь
+            </p>
+            <p className="truncate text-xs text-[#A89279]">user@test.com</p>
           </div>
+
           <button
-            type="submit"
+            type="button"
             onClick={() => logout()}
+            className="rounded-lg border border-[#5A4432] px-3 py-1.5 text-sm text-[#D8C7B0] transition-colors hover:border-[#C49A6C] hover:bg-[#4A3626] hover:text-[#F5EFE6] focus:outline-none focus:ring-2 focus:ring-[#C49A6C]/50"
+            title="Выйти"
           >
             Выйти
           </button>
