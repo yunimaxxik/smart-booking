@@ -14,3 +14,19 @@ export async function login(
   }
   return response.json();
 }
+
+export async function register(
+  email: string,
+  password: string,
+  userName: string
+): Promise<LoginResponse> {
+  const response = await fetch('/api/auth/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password, userName })
+  });
+  if (!response.ok) {
+    throw new Error(`Пользователь с такой почтой уже зарегистрирован`);
+  }
+  return response.json();
+}

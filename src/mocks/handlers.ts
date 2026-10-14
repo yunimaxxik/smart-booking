@@ -1,21 +1,67 @@
 import { http, HttpResponse } from 'msw';
 import { mockRooms } from './data';
+import {
+  getStoredBookings,
+  getStoredUsers,
+  saveBookings,
+  saveUsers
+} from './storage';
 import type { Booking } from '../shared/interfaces/Booking';
-import { getStoredBookings, saveBookings } from './storage';
+import type { User } from '../shared/interfaces/User';
 
 export const handlers = [
   // Авторизация
   http.post('/api/auth/login', async ({ request }) => {
     const body = (await request.json()) as { email: string; password: string };
+    const currentUsers = getStoredUsers();
 
-    if (body.email === 'test@test.com' && body.password === 'password') {
-      return HttpResponse.json({
-        token: 'mock-jwt-token',
-        user: { id: 'user1', email: body.email }
-      });
+    const user = currentUsers.find((user) => user.email === body.email);
+
+    if (!user || user.password !== body.password) {
+      return HttpResponse.json(
+        { error: 'Неверный email или пароль' },
+        { status: 401 }
+      );
     }
 
-    return HttpResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    return HttpResponse.json({
+      token: 'mock-jwt-token-' + user.id,
+      user
+    });
+  }),
+
+  http.post('/api/auth/register', async ({ request }) => {
+    const body = (await request.json()) as {
+      email: string;
+      password: string;
+      userName: string;
+    };
+
+    const currentUsers = getStoredUsers();
+
+    const isRegisted = currentUsers.some((user) => user.email === body.email);
+
+    if (isRegisted) {
+      return HttpResponse.json(
+        { error: 'Пользователь с такой почтой уже зарегистрирован' },
+        { status: 409 }
+      );
+    }
+
+    const newUser: User = {
+      id: Date.now().toString(),
+      email: body.email,
+      password: body.password,
+      userName: body.userName
+    };
+
+    currentUsers.push(newUser);
+    saveUsers(currentUsers);
+
+    return HttpResponse.json({
+      token: 'mock-jwt-token' + newUser.id,
+      user: newUser
+    });
   }),
 
   // Получить список комнат

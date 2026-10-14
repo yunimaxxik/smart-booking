@@ -1,4 +1,6 @@
+import type { User } from './User';
+
 export interface LoginResponse {
   token: string;
-  user: { id: string; email: string };
+  user: User;
 }

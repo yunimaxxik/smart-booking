@@ -5,11 +5,16 @@ import LoginPage from '../pages/auth/LoginPage';
 import DashboardPage from '../pages/dashboard/DashboardPage';
 import BookingPage from '../pages/booking/BookingPage';
 import MyBookingsPage from '../pages/bookings/MyBookingsPage';
+import RegisterPage from '../pages/auth/RegisterPage';
 
 export const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />
   },
   {
     path: '/',

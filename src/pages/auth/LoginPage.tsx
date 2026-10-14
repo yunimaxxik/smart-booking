@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import LoginForm from '../../features/auth/LoginForm';
 
 const LoginPage = () => {
@@ -28,6 +29,15 @@ const LoginPage = () => {
         </div>
 
         <LoginForm />
+        <p className="mt-6 text-center text-sm text-[#7A6350]">
+          Нет аккаунта?{' '}
+          <Link
+            to="/register"
+            className="font-medium text-[#8B5E34] underline-offset-4 transition-colors hover:text-[#6F4A29] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C49A6C]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF6F0] rounded-sm"
+          >
+            Зарегистрируйтесь
+          </Link>
+        </p>
       </section>
     </div>
   );

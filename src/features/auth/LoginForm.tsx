@@ -1,9 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { login as loginApi } from '../../shared/api/authApi';
 import { useAuthStore } from '../../shared/store/authStore';
-import { useNavigate } from 'react-router-dom';
 
 const formSchema = z.object({
   email: z.string().email('Введите корректный email'),

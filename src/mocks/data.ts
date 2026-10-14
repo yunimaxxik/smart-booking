@@ -1,5 +1,6 @@
 import type { Room } from '../shared/interfaces/Room';
 import type { Booking } from '../shared/interfaces/Booking';
+import type { User } from '../shared/interfaces/User';
 
 export const mockRooms: Room[] = [
   {
@@ -50,3 +51,12 @@ export const mockRooms: Room[] = [
 ];
 
 export const mockBookings: Booking[] = [];
+
+export const mockUsers: User[] = [
+  {
+    id: '1',
+    email: 'test@test.com',
+    password: 'password',
+    userName: 'user'
+  }
+];
