@@ -5,11 +5,13 @@ import calendarIcon from '../../assets/icons/calendar.png';
 
 const Sidebar = () => {
   const logout = useAuthStore((store) => store.logout);
+  const user = useAuthStore((store) => store.user);
   const location = useLocation();
 
   const navItems = [
     { path: '/dashboard', label: 'Доска комнат', icon: boardIcon },
-    { path: '/my-bookings', label: 'Мои бронирования', icon: calendarIcon }
+    { path: '/my-bookings', label: 'Мои бронирования', icon: calendarIcon },
+    { path: '/profile', label: 'Мой профиль', icon: '👤' }
   ];
 
   return (
@@ -55,15 +57,18 @@ const Sidebar = () => {
       <div className="border-t border-[#5A4432] p-4">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-[#C49A6C] to-[#8B5E34] font-bold text-[#FAF6F0]">
-            U
+            {user?.userName?.charAt(0).toUpperCase() || '?'}
           </div>
 
-          <div className="min-w-0 flex-1">
+          <Link
+            to={'/profile'}
+            className="min-w-0 flex-1"
+          >
             <p className="truncate text-sm font-medium text-[#F5EFE6]">
-              Пользователь
+              {user?.userName}
             </p>
-            <p className="truncate text-xs text-[#A89279]">user@test.com</p>
-          </div>
+            <p className="truncate text-xs text-[#A89279]">{user?.email}</p>
+          </Link>
 
           <button
             type="button"

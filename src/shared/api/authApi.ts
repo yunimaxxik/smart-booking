@@ -1,4 +1,5 @@
 import type { LoginResponse } from '../interfaces/LoginResponse';
+import type { User } from '../interfaces/User';
 
 export async function login(
   email: string,
@@ -27,6 +28,21 @@ export async function register(
   });
   if (!response.ok) {
     throw new Error(`Пользователь с такой почтой уже зарегистрирован`);
+  }
+  return response.json();
+}
+
+export async function updateProfile(
+  email: string,
+  userName: string
+): Promise<User> {
+  const response = await fetch('/api/auth/profile', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, userName })
+  });
+  if (!response.ok) {
+    throw new Error(`Ошибка обновления профиля`);
   }
   return response.json();
 }

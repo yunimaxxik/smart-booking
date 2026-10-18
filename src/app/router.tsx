@@ -6,6 +6,7 @@ import DashboardPage from '../pages/dashboard/DashboardPage';
 import BookingPage from '../pages/booking/BookingPage';
 import MyBookingsPage from '../pages/bookings/MyBookingsPage';
 import RegisterPage from '../pages/auth/RegisterPage';
+import ProfilePage from '../pages/profile/ProfilePage';
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: 'my-bookings',
         element: <MyBookingsPage />
+      },
+      {
+        path: 'profile',
+        element: <ProfilePage />
       }
     ]
   }
