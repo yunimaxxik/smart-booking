@@ -29,6 +29,36 @@ export const handlers = [
     return HttpResponse.json(user);
   }),
 
+  // 2. Смена пароля
+  http.patch('/api/auth/change-password', async ({ request }) => {
+    const body = (await request.json()) as {
+      email: string;
+      currentPassword: string;
+      newPassword: string;
+    };
+    const currentUsers = getStoredUsers();
+
+    const user = currentUsers.find((u) => u.email === body.email);
+
+    if (!user) {
+      return HttpResponse.json(
+        { error: 'Пользователь не найден' },
+        { status: 404 }
+      );
+    }
+
+    if (body.currentPassword === user.password) {
+      user.password = body.newPassword;
+      saveUsers(currentUsers);
+      return HttpResponse.json({ message: 'Пароль успешно изменен' });
+    }
+
+    return HttpResponse.json(
+      { error: 'Неверный текущий пароля' },
+      { status: 401 }
+    );
+  }),
+
   // 2. Авторизация
   http.post('/api/auth/login', async ({ request }) => {
     const body = (await request.json()) as { email: string; password: string };

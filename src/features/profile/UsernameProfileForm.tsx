@@ -5,19 +5,17 @@ import { z } from 'zod';
 
 import { useAuthStore } from '../../shared/store/authStore';
 import { updateProfile } from '../../shared/api/authApi';
+import { inputClasses } from '../../shared/ui/classes';
+import type { User } from '../../shared/interfaces/User';
 
-const userSchema = z.object({
+const usernameSchema = z.object({
   userName: z.string().min(2, 'Никнейм должен быть не короче 2 символов')
 });
 
-type User = z.infer<typeof userSchema>;
+type UsernameFormData = z.infer<typeof usernameSchema>;
 
-const inputClasses =
-  'w-full rounded-xl border bg-[#FAF6F0] px-4 py-2.5 text-[#3D2B1F] placeholder-[#A89279] transition-colors focus:outline-none focus:ring-2 focus:ring-[#C49A6C]/50';
-
-const ProfileForm = () => {
+const ProfileForm = ({ user }: { user: User }) => {
   const [successMessage, setSuccessMessage] = useState('');
-  const user = useAuthStore((store) => store.user);
   const login = useAuthStore((store) => store.login);
   const token = useAuthStore((store) => store.token);
 
@@ -26,20 +24,12 @@ const ProfileForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError
-  } = useForm<User>({
-    resolver: zodResolver(userSchema),
+  } = useForm<UsernameFormData>({
+    resolver: zodResolver(usernameSchema),
     defaultValues: { userName: user?.userName || '' }
   });
 
-  if (!user) {
-    return (
-      <div className="rounded-xl border border-[#D9A38A] bg-[#FBEFE8] px-4 py-3 text-sm text-[#8A3B2A]">
-        Пользователь не найден
-      </div>
-    );
-  }
-
-  const handleChange = async (data: User) => {
+  const handleChange = async (data: UsernameFormData) => {
     try {
       const result = await updateProfile(user.email, data.userName);
       login(token!, result);
@@ -90,7 +80,7 @@ const ProfileForm = () => {
           type="email"
           value={user.email}
           disabled
-          className={`${inputClasses} cursor-not-allowed border-[#E4D5C1] text-[#A89279] opacity-70`}
+          className={`${inputClasses} cursor-not-allowed border-[#E4D5C1]`}
         />
       </div>
 

@@ -46,3 +46,18 @@ export async function updateProfile(
   }
   return response.json();
 }
+
+export async function changePassword(
+  email: string,
+  currentPassword: string,
+  newPassword: string
+): Promise<void> {
+  const response = await fetch('/api/auth/change-password', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, currentPassword, newPassword })
+  });
+  if (!response.ok) {
+    throw new Error(`Ошибка смены пароля`);
+  }
+}

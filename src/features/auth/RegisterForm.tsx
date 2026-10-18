@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { register as registerApi } from '../../shared/api/authApi';
 import { useAuthStore } from '../../shared/store/authStore';
+import { inputClasses } from '../../shared/ui/classes';
 
 const registerSchema = z
   .object({
@@ -47,9 +48,6 @@ const RegisterForm = () => {
       }
     }
   };
-
-  const inputClasses =
-    'w-full rounded-xl border bg-[#FAF6F0] px-4 py-2.5 text-[#3D2B1F] placeholder-[#A89279] transition-colors focus:outline-none focus:ring-2 focus:ring-[#C49A6C]/50';
 
   return (
     <form
