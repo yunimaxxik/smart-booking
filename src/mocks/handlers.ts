@@ -6,8 +6,8 @@ import {
   saveBookings,
   saveUsers
 } from './storage';
-import type { Booking } from '../shared/interfaces/Booking';
-import type { User } from '../shared/interfaces/User';
+import type { Booking } from '@/shared/interfaces/Booking';
+import type { User } from '@/shared/interfaces/User';
 
 export const handlers = [
   // 1. Обновление профиля

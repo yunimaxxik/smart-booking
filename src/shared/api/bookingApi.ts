@@ -1,5 +1,5 @@
-import type { Booking } from '../interfaces/Booking';
-import type { CreateBookingData } from '../interfaces/CreateBookingData';
+import type { Booking } from '@/shared/interfaces/Booking';
+import type { CreateBookingData } from '@/shared/interfaces/CreateBookingData';
 
 export async function getBookingsByRoom(roomId: string): Promise<Booking[]> {
   const response = await fetch(`/api/bookings?roomId=${roomId}`);

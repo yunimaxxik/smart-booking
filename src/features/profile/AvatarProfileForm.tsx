@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 
-import { useAuthStore } from '../../shared/store/authStore';
-import { updateAvatar } from '../../shared/api/authApi';
-import type { User } from '../../shared/interfaces/User';
+import { useAuthStore } from '@/shared/store/authStore';
+import { updateAvatar } from '@/shared/api/authApi';
+import type { User } from '@/shared/interfaces/User';
 
 const AvatarProfileForm = ({ user }: { user: User }) => {
   const [preview, setPreview] = useState<string | null>(null);

@@ -2,11 +2,11 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { format, parseISO } from 'date-fns';
-import { getRoomById } from '../../shared/api/roomApi';
-import { getBookingsByRoom, createBooking } from '../../shared/api/bookingApi';
-import TimeSlots from '../../widgets/TimeSlots/TimeSlots';
-import BookingForm from '../../features/booking/BookingForm';
-import type { CreateBookingData } from '../../shared/interfaces/CreateBookingData';
+import { getRoomById } from '@/shared/api/roomApi';
+import { getBookingsByRoom, createBooking } from '@/shared/api/bookingApi';
+import TimeSlots from '@/widgets/TimeSlots/TimeSlots';
+import BookingForm from '@/features/booking/BookingForm';
+import type { CreateBookingData } from '@/shared/interfaces/CreateBookingData';
 
 // Локальная дата в формате YYYY-MM-DD (без сдвига из-за UTC)
 const toDateInputValue = (d: Date) => {

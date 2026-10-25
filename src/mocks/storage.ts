@@ -1,6 +1,6 @@
 import { mockBookings, mockUsers } from './data';
-import type { Booking } from '../shared/interfaces/Booking';
-import type { User } from '../shared/interfaces/User';
+import type { Booking } from '@/shared/interfaces/Booking';
+import type { User } from '@/shared/interfaces/User';
 
 export function getStoredBookings(): Booking[] {
   const data = localStorage.getItem('mockBookings');

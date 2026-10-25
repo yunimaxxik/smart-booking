@@ -1,4 +1,4 @@
-import Layout from './shared/ui/Layout';
+import Layout from '@/shared/ui/Layout';
 
 export default function App() {
   return <Layout />;

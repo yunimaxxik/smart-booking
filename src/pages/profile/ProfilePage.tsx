@@ -1,7 +1,7 @@
-import UsernameProfileForm from '../../features/profile/UsernameProfileForm';
-import PasswordProfileForm from '../../features/profile/PasswordProfileForm';
-import AvatarProfileForm from '../../features/profile/AvatarProfileForm';
-import { useAuthStore } from '../../shared/store/authStore';
+import UsernameProfileForm from '@/features/profile/UsernameProfileForm';
+import PasswordProfileForm from '@/features/profile/PasswordProfileForm';
+import AvatarProfileForm from '@/features/profile/AvatarProfileForm';
+import { useAuthStore } from '@/shared/store/authStore';
 
 const ProfilePage = () => {
   const user = useAuthStore((store) => store.user);

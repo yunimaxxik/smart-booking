@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import React from 'react';
-import { useAuthStore } from '../store/authStore';
+import { useAuthStore } from '@/shared/store/authStore';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;

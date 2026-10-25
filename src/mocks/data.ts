@@ -1,6 +1,6 @@
-import type { Room } from '../shared/interfaces/Room';
-import type { Booking } from '../shared/interfaces/Booking';
-import type { User } from '../shared/interfaces/User';
+import type { Room } from '@/shared/interfaces/Room';
+import type { Booking } from '@/shared/interfaces/Booking';
+import type { User } from '@/shared/interfaces/User';
 
 export const mockRooms: Room[] = [
   {

@@ -2,9 +2,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { format } from 'date-fns';
-import { useAuthStore } from '../../shared/store/authStore';
-import type { CreateBookingData } from '../../shared/interfaces/CreateBookingData';
-import { inputClasses } from '../../shared/ui/classes';
+import { useAuthStore } from '@/shared/store/authStore';
+import type { CreateBookingData } from '@/shared/interfaces/CreateBookingData';
+import { inputClasses } from '@/shared/ui/classes';
 
 interface BookingFormProps {
   startTime: string;

@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { cancelBooking, getAllBookings } from '../../shared/api/bookingApi';
-import BookingCard from '../../entities/booking/BookingCard';
+import { cancelBooking, getAllBookings } from '@/shared/api/bookingApi';
+import BookingCard from '@/entities/booking/BookingCard';
 
 const MyBookingsPage = () => {
   const queryClient = useQueryClient();

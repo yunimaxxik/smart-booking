@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import { useAuthStore } from '../../shared/store/authStore';
-import { updateProfile } from '../../shared/api/authApi';
-import { inputClasses } from '../../shared/ui/classes';
-import type { User } from '../../shared/interfaces/User';
+import { useAuthStore } from '@/shared/store/authStore';
+import { updateProfile } from '@/shared/api/authApi';
+import { inputClasses } from '@/shared/ui/classes';
+import type { User } from '@/shared/interfaces/User';
 
 const usernameSchema = z.object({
   userName: z.string().min(2, 'Никнейм должен быть не короче 2 символов')

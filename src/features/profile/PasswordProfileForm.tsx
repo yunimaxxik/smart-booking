@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import { inputClasses } from '../../shared/ui/classes';
-import { useAuthStore } from '../../shared/store/authStore';
-import { changePassword } from '../../shared/api/authApi';
-import type { User } from '../../shared/interfaces/User';
+import { inputClasses } from '@/shared/ui/classes';
+import { useAuthStore } from '@/shared/store/authStore';
+import { changePassword } from '@/shared/api/authApi';
+import type { User } from '@/shared/interfaces/User';
 
 const passwordSchema = z
   .object({

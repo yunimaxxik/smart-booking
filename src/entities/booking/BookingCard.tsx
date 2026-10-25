@@ -1,5 +1,5 @@
 import { format, parseISO } from 'date-fns';
-import type { Booking } from '../../shared/interfaces/Booking';
+import type { Booking } from '@/shared/interfaces/Booking';
 
 interface BookingCardProps {
   booking: Booking;

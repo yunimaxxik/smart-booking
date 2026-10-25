@@ -1,5 +1,5 @@
-import RoomList from '../../widgets/RoomList/RoomList';
-import Filters from '../../widgets/Filters/Filters';
+import RoomList from '@/widgets/RoomList/RoomList';
+import Filters from '@/widgets/Filters/Filters';
 
 const DashboardPage = () => {
   return (

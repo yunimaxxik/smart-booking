@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
-import boardIcon from '../../assets/icons/board.png';
-import calendarIcon from '../../assets/icons/calendar.png';
-import userIcon from '../../assets/icons/user.png';
+import { useAuthStore } from '@/shared/store/authStore';
+import boardIcon from '@/assets/icons/board.png';
+import calendarIcon from '@/assets/icons/calendar.png';
+import userIcon from '@/assets/icons/user.png';
 
 const Sidebar = () => {
   const logout = useAuthStore((store) => store.logout);

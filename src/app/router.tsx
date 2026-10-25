@@ -1,12 +1,12 @@
 import { createHashRouter } from 'react-router-dom';
-import Layout from '../shared/ui/Layout';
-import ProtectedRoute from '../shared/ui/ProtectedRoute';
-import LoginPage from '../pages/auth/LoginPage';
-import DashboardPage from '../pages/dashboard/DashboardPage';
-import BookingPage from '../pages/booking/BookingPage';
-import MyBookingsPage from '../pages/bookings/MyBookingsPage';
-import RegisterPage from '../pages/auth/RegisterPage';
-import ProfilePage from '../pages/profile/ProfilePage';
+import Layout from '@/shared/ui/Layout';
+import ProtectedRoute from '@/shared/ui/ProtectedRoute';
+import LoginPage from '@/pages/auth/LoginPage';
+import DashboardPage from '@/pages/dashboard/DashboardPage';
+import BookingPage from '@/pages/booking/BookingPage';
+import MyBookingsPage from '@/pages/bookings/MyBookingsPage';
+import RegisterPage from '@/pages/auth/RegisterPage';
+import ProfilePage from '@/pages/profile/ProfilePage';
 
 export const router = createHashRouter([
   {

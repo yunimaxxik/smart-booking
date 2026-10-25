@@ -1,5 +1,5 @@
-import type { Room } from '../interfaces/Room';
-import type { Filters } from '../interfaces/Filters';
+import type { Room } from '@/shared/interfaces/Room';
+import type { Filters } from '@/shared/interfaces/Filters';
 
 export async function getRooms(filters: Filters): Promise<Room[] | undefined> {
   const params = new URLSearchParams();

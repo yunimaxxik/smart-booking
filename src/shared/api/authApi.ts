@@ -1,5 +1,5 @@
-import type { LoginResponse } from '../interfaces/LoginResponse';
-import type { User } from '../interfaces/User';
+import type { LoginResponse } from '@/shared/interfaces/LoginResponse';
+import type { User } from '@/shared/interfaces/User';
 
 export async function login(
   email: string,
