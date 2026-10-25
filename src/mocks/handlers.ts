@@ -113,6 +113,29 @@ export const handlers = [
     });
   }),
 
+  // Смена автара
+  http.patch('/api/auth/avatar', async ({ request }) => {
+    const body = (await request.json()) as {
+      email: string;
+      avatar: string;
+    };
+    const currentUsers = getStoredUsers();
+
+    const user = currentUsers.find((u) => u.email === body.email);
+
+    if (!user) {
+      return HttpResponse.json(
+        { error: 'Пользователь не найден' },
+        { status: 404 }
+      );
+    }
+
+    user.avatar = body.avatar;
+    saveUsers(currentUsers);
+
+    return HttpResponse.json(user);
+  }),
+
   // 4. Получить список комнат
   http.get('/api/rooms', ({ request }) => {
     const params = new URL(request.url).searchParams;

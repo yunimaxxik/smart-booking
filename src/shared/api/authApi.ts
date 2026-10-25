@@ -61,3 +61,18 @@ export async function changePassword(
     throw new Error(`Ошибка смены пароля`);
   }
 }
+
+export async function updateAvatar(
+  email: string,
+  avatar: string
+): Promise<User> {
+  const response = await fetch('/api/auth/avatar', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, avatar })
+  });
+  if (!response.ok) {
+    throw new Error(`Ошибка загрузки аватара`);
+  }
+  return response.json();
+}

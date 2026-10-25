@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import boardIcon from '../../assets/icons/board.png';
 import calendarIcon from '../../assets/icons/calendar.png';
+import userIcon from '../../assets/icons/user.png';
 
 const Sidebar = () => {
   const logout = useAuthStore((store) => store.logout);
@@ -11,7 +12,7 @@ const Sidebar = () => {
   const navItems = [
     { path: '/dashboard', label: 'Доска комнат', icon: boardIcon },
     { path: '/my-bookings', label: 'Мои бронирования', icon: calendarIcon },
-    { path: '/profile', label: 'Мой профиль', icon: '👤' }
+    { path: '/profile', label: 'Мой профиль', icon: userIcon }
   ];
 
   return (
@@ -56,9 +57,17 @@ const Sidebar = () => {
       {/* Профиль и выход — всегда внизу */}
       <div className="border-t border-[#5A4432] p-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-[#C49A6C] to-[#8B5E34] font-bold text-[#FAF6F0]">
-            {user?.userName?.charAt(0).toUpperCase() || '?'}
-          </div>
+          {user?.avatar ? (
+            <img
+              src={user.avatar}
+              alt="Аватар"
+              className="h-10 w-10 rounded-full object-cover"
+            />
+          ) : (
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-[#C49A6C] to-[#8B5E34] font-bold text-[#FAF6F0]">
+              {user?.userName?.charAt(0).toUpperCase() || '?'}
+            </div>
+          )}
 
           <Link
             to={'/profile'}
