@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 import Layout from '../shared/ui/Layout';
 import ProtectedRoute from '../shared/ui/ProtectedRoute';
 import LoginPage from '../pages/auth/LoginPage';
@@ -8,7 +8,7 @@ import MyBookingsPage from '../pages/bookings/MyBookingsPage';
 import RegisterPage from '../pages/auth/RegisterPage';
 import ProfilePage from '../pages/profile/ProfilePage';
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/login',
     element: <LoginPage />
@@ -25,26 +25,11 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        index: true,
-        element: <DashboardPage />
-      },
-      {
-        path: 'dashboard',
-        element: <DashboardPage />
-      },
-      {
-        path: 'booking/:roomId',
-        element: <BookingPage />
-      },
-      {
-        path: 'my-bookings',
-        element: <MyBookingsPage />
-      },
-      {
-        path: 'profile',
-        element: <ProfilePage />
-      }
+      { index: true, element: <DashboardPage /> },
+      { path: 'dashboard', element: <DashboardPage /> },
+      { path: 'booking/:roomId', element: <BookingPage /> },
+      { path: 'my-bookings', element: <MyBookingsPage /> },
+      { path: 'profile', element: <ProfilePage /> }
     ]
   }
 ]);
